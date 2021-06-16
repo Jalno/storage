@@ -22,4 +22,11 @@ class Package extends PackageAbstract
     {
         return __NAMESPACE__;
     }
+
+    public function getCommands(): array
+    {
+        return [
+            Console\StorageLinkCommand::class,
+        ];
+    }
 }
