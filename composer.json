@@ -1,12 +1,18 @@
 {
-	"name": "jalno/storage",
-	"version": "0.0.1",
-	"autoload": {
-		"psr-4": {
-			"Jalno\\Storage\\": "src"
-		}
-	},
-	"require": {
-		"league/flysystem": "^1.1.0"
-	}
+    "name": "jalno/storage",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "Jalno\\Storage\\": "src"
+        }
+    },
+    "require": {
+        "jalno/lumen": "^0.0.1",
+        "league/flysystem": "^1.1.0"
+    },
+    "extra": {
+        "jalno": {
+            "package": "Jalno\\Storage\\Package"
+        }
+    }
 }
