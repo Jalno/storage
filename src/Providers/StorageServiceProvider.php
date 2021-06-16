@@ -5,7 +5,7 @@ use Jalno\Lumen\Contracts;
 use Jalno\Storage\Repository;
 use Illuminate\Support\ServiceProvider;
 
-class StorageProvider extends ServiceProvider
+class StorageServiceProvider extends ServiceProvider
 {
 	/**
      * Register any application services.
