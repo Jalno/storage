@@ -4,8 +4,9 @@ namespace Jalno\Storage\Providers;
 use Jalno\Lumen\Contracts;
 use Jalno\Storage\Repository;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class StorageServiceProvider extends ServiceProvider
+class StorageServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 	/**
      * Register any application services.
@@ -15,16 +16,10 @@ class StorageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(Contracts\IStorage::class, fn($app, array $parameters) => new Repository($parameters[0]));
-        $this->app->instance(Contracts\IStorage::class, Repository::class);
     }
 
-    /**
-     * Boot the authentication services for the application.
-     *
-     * @return void
-     */
-    public function boot()
+    public function provides()
     {
-        //
-	}
+        return [Contracts\IStorage::class];
+    }
 }
