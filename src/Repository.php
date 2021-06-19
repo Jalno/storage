@@ -1,12 +1,14 @@
 <?php
 namespace Jalno\Storage;
 
-use \Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Jalno\Lumen\Contracts\{IStorage, IPackage};
 
 class Repository implements IStorage
 {
     protected IPackage $package;
+
+    /** @var array<string, Filesystem> $disks */
     private array $disks = [];
 
     public function __construct(IPackage $package)
@@ -14,17 +16,17 @@ class Repository implements IStorage
         $this->package = $package;
     }
 
-    public function public(): FilesystemAdapter
+    public function public(): Filesystem
     {
         return $this->disk("public");
     }
 
-    public function private(): FilesystemAdapter
+    public function private(): Filesystem
     {
         return $this->disk("private");
     }
 
-    public function disk(string $name): FilesystemAdapter
+    public function disk(string $name): Filesystem
     {
         if (!isset($this->disks[$name])) {
             if (!isset($this->package->getStorageConfig()[$name])) {
