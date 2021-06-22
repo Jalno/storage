@@ -9,7 +9,7 @@ class StorageLinkCommand extends Command
     /**
      * The console command signature.
      *
-     * @var string
+     * @property string $signature
      */
     protected $signature = 'storage:link
                 {--relative : Create the symbolic link using relative paths}
@@ -18,7 +18,7 @@ class StorageLinkCommand extends Command
     /**
      * The console command description.
      *
-     * @var string
+     * @property string $description
      */
     protected $description = 'Create the symbolic links configured for the application';
 
@@ -32,7 +32,9 @@ class StorageLinkCommand extends Command
         $relative = $this->option('relative');
 
         foreach ($this->links() as $link => $target) {
-            if (file_exists($link) && ! $this->isRemovableSymlink($link, $this->option('force'))) {
+            $link = strval($link);
+            $force = boolval($this->option('force'));
+            if (file_exists($link) && !$this->isRemovableSymlink($link, $force)) {
                 $this->error("The [$link] link already exists.");
                 continue;
             }
@@ -56,7 +58,7 @@ class StorageLinkCommand extends Command
     /**
      * Get the symbolic links that are configured for the application.
      *
-     * @return array
+     * @return array<string, string>
      */
     protected function links()
     {

@@ -5,7 +5,6 @@ use Jalno\Lumen\Packages\PackageAbstract;
 
 class Package extends PackageAbstract
 {
-
     public function getProviders(): array
     {
         return [

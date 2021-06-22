@@ -2,7 +2,12 @@
 namespace Jalno\Storage;
 
 use InvalidArgumentException;
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\{
+    Filesystem\Filesystem,
+    Filesystem\Factory as FileSystemFactory,
+    Container\Container,
+    Config\Repository as ConfigRepository
+};
 use Jalno\Lumen\Contracts\{IStorage, IPackage};
 use Illuminate\Contracts\Filesystem\Filesystem;
 
@@ -10,11 +15,17 @@ class Repository implements IStorage
 {
     protected Container $app;
     protected IPackage $package;
+    protected FileSystemFactory $storage;
+    protected ConfigRepository $config;
+
+    /** @var array<string, Filesystem> $disks */
     private array $disks = [];
 
     public function __construct(Container $app, IPackage $package)
     {
         $this->app = $app;
+        $this->storage = $this->app->make("filesystem");
+        $this->config = $this->app->make(ConfigRepository::class);
         $this->package = $package;
     }
 
@@ -31,12 +42,12 @@ class Repository implements IStorage
     public function disk(string $name): Filesystem
     {
         if (!isset($this->disks[$name])) {
-            if (!$this->app["config"]->has("filesystems")) {
+            if ($this->app instanceof \Laravel\Lumen\Application and !$this->config->has("filesystems")) {
                 $this->app->configure("filesystems");
             }
             $packageName = str_replace("/", ".", $this->package->getName());
-            $this->app["config"]->set("filesystems.disks.{$packageName}.{$name}", $this->getConfig($name));
-            $this->disks[$name] = \Storage::disk("{$packageName}.{$name}");
+            $this->config->set("filesystems.disks.{$packageName}.{$name}", $this->getConfig($name));
+            $this->disks[$name] = $this->storage->disk("{$packageName}.{$name}");
         }
 
         return $this->disks[$name];
@@ -46,7 +57,7 @@ class Repository implements IStorage
      * Get the filesystem connection configuration.
      *
      * @param  string  $name
-     * @return array
+     * @return array<string,mixed>
      */
     protected function getConfig(string $name): array
     {

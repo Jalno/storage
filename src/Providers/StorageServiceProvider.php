@@ -18,6 +18,9 @@ class StorageServiceProvider extends ServiceProvider implements DeferrableProvid
         $this->app->bind(Contracts\IStorage::class, fn($app, array $parameters) => new Repository($app, $parameters[0]));
     }
 
+    /**
+     * @return string[]
+     */
     public function provides()
     {
         return [Contracts\IStorage::class];
