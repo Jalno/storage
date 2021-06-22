@@ -9,6 +9,7 @@ use Illuminate\Contracts\{
     Config\Repository as ConfigRepository
 };
 use Jalno\Lumen\Contracts\{IStorage, IPackage};
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class Repository implements IStorage
 {
