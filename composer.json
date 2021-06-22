@@ -7,7 +7,7 @@
         }
     },
     "require": {
-        "jalno/lumen": "^1.0.0",
+        "jalno/lumen": "^1.0.1",
         "league/flysystem": "^1.1.0"
     },
     "require-dev": {

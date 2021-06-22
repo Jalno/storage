@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bd09d693abf95521c905cecc7d4f611",
+    "content-hash": "0c316a63ca52b55b9c7800827312c2e4",
     "packages": [
         {
             "name": "brick/math",
@@ -1865,20 +1865,23 @@
         },
         {
             "name": "jalno/autodiscovery",
-            "version": "0.0.3",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jalno/autodiscovery.git",
-                "reference": "7046717dc56aae8fe8cc44b1138bef68e48a2e9d"
+                "reference": "aca51cf8f5606079324167ca502ece7ce0761f88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jalno/autodiscovery/zipball/7046717dc56aae8fe8cc44b1138bef68e48a2e9d",
-                "reference": "7046717dc56aae8fe8cc44b1138bef68e48a2e9d",
+                "url": "https://api.github.com/repos/Jalno/autodiscovery/zipball/aca51cf8f5606079324167ca502ece7ce0761f88",
+                "reference": "aca51cf8f5606079324167ca502ece7ce0761f88",
                 "shasum": ""
             },
             "require": {
-                "jalno/lumen": "^0.0.1"
+                "jalno/lumen": "^1.0.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.83"
             },
             "type": "library",
             "autoload": {
@@ -1887,22 +1890,29 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "description": "Jalno AutoDiscovery",
             "support": {
                 "issues": "https://github.com/Jalno/autodiscovery/issues",
-                "source": "https://github.com/Jalno/autodiscovery/tree/v0.0.3"
+                "source": "https://github.com/Jalno/autodiscovery/tree/1.0.1"
             },
-            "time": "2021-06-17T18:19:14+00:00"
+            "time": "2021-06-22T14:07:42+00:00"
         },
         {
             "name": "jalno/lumen",
-            "version": "0.0.1",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jalno/lumen.git",
+                "reference": "6c49b62c681118435ad17ec9847fc06c6a17cb20"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/composer/lumen",
-                "reference": "14f526176b3b73640d1b8eb05e05afa2105845ee"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Jalno/lumen/zipball/6c49b62c681118435ad17ec9847fc06c6a17cb20",
+                "reference": "6c49b62c681118435ad17ec9847fc06c6a17cb20",
+                "shasum": ""
             },
             "require": {
-                "jalno/autodiscovery": "^0.0.3",
+                "jalno/autodiscovery": "^1.0.0",
                 "laravel/lumen-framework": "^8.0"
             },
             "require-dev": {
@@ -1921,18 +1931,13 @@
                     "src/helpers.php"
                 ]
             },
-            "scripts": {
-                "test:types": [
-                    "./vendor/phpstan/phpstan/phpstan analyse -vvv --debug phpstan.neon src"
-                ],
-                "test": [
-                    "@test:types"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "jalno lumen",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/Jalno/lumen/issues",
+                "source": "https://github.com/Jalno/lumen/tree/v1.0.1"
+            },
+            "time": "2021-06-22T14:56:42+00:00"
         },
         {
             "name": "laravel/lumen-framework",
@@ -5143,9 +5148,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jalno/lumen": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
