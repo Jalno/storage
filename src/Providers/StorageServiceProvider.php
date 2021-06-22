@@ -19,7 +19,7 @@ class StorageServiceProvider extends ServiceProvider implements DeferrableProvid
     }
 
     /**
-     * @return class-string[]
+     * @return string[]
      */
     public function provides()
     {

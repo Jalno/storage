@@ -32,7 +32,7 @@ class Repository implements IStorage
             if (!isset($this->package->getStorageConfig()[$name])) {
                 throw new \InvalidArgumentException($name . " disk is undifined.");
             }
-            $this->disks[$name] = \Storage::createLocalDriver($this->package->getStorageConfig()[$name]);
+            $this->disks[$name] = app("filesystem")->createLocalDriver($this->package->getStorageConfig()[$name]);
         }
 
         return $this->disks[$name];
